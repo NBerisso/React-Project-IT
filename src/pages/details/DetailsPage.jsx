@@ -1,64 +1,56 @@
-import "./DetailsPage.css";
+import { useParams } from "react-router-dom";
 
-import {Link} from 'react-router-dom';
+import { NavBar, ItemDetails } from "../../components";
+import { BackButton, AddToCartButton } from "../../components/buttons";
+
+const itemsMock = [
+  {
+    id: 1,
+    image: "/Fotos/Anteojos/ali-pazani-GwglcplmXDs-unsplash.jpg",
+    title: "Anteojos 1",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae facere laudantium beatae et, eos minus deserunt modi, aliquid excepturi eius suscipit quasi! Suscipit corporis, laborum laudantium obcaecati sit excepturi vitae.",
+    sizes: ["S", "M"],
+    colors: ["Rojo", "Violeta"],
+    price: 1500,
+  },
+  {
+    id: 2,
+    image: "/Fotos/Anteojos/apostolos-vamvouras-mKi4QEJXRCs-unsplash.jpg",
+    title: "Anteojos 2",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae facere laudantium beatae et, eos minus deserunt modi, aliquid excepturi eius suscipit quasi! Suscipit corporis, laborum laudantium obcaecati sit excepturi vitae.",
+    sizes: ["S", "M"],
+    colors: ["Rojo", "Violeta"],
+    price: 5500,
+  },
+  {
+    id: 3,
+    image: "/Fotos/Anteojos/noah-black-1p3N5SHz0Hk-unsplash.jpg",
+    title: "Anteojos 3",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae facere laudantium beatae et, eos minus deserunt modi, aliquid excepturi eius suscipit quasi! Suscipit corporis, laborum laudantium obcaecati sit excepturi vitae.",
+    sizes: ["S", "M"],
+    colors: ["Rojo", "Violeta"],
+    price: 1000,
+  },
+];
 
 export default function DetailsPage() {
+  const { id } = useParams();
+
+  const item = itemsMock.find((item) => item.id == id);
+
   return (
     <div>
-      <nav>
-        <div className="nav-wrapper">
-          <span className="logo">MioMio</span>
-          <Link to="/cart" className="cart-button">Carrito</Link>
-        </div>
-      </nav>
+      <NavBar />
 
-        <div className="back-button">
-            <Link to='/'>Volver</Link>
-        </div>
+      <BackButton />
 
       <main>
-            <div className="details-wrapper">
+        <ItemDetails item={item} />
 
-                <div className="image-wrapper">
-                    <img src="/Fotos/Anteojos/ali-pazani-GwglcplmXDs-unsplash.jpg" alt="Foto detalle" />
-                </div>
-
-                <h2 className="title">Lorem Ipsum</h2>
-
-                <div className="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui sequi ullam atque expedita, totam, dolorum obcaecati accusamus dolorem ut unde architecto rerum earum facilis, magni sapiente inventore error aliquid molestias!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam molestiae dicta ab aut odio aliquam suscipit labore cupiditate eum quidem eos quisquam autem nesciunt distinctio, rem fugiat temporibus mollitia quos.</p>
-                </div>
-
-                <div className="product-info">
-                    <div className="colors">
-                        <span>Colores</span>
-                        <ul className="colors-list">
-                            <li>Rojo</li>
-                            <li>Negro</li>
-                            <li>Blanco</li>
-                        </ul>
-                    </div>
-
-                    <div className="sizes">
-                        <span>Talles</span>
-                        <ul className="sizes-list">
-                            <li>S</li>
-                            <li>M</li>
-                            <li>L</li>
-                        </ul>
-                    </div>
-
-                    <div className="price">
-                        <span className="price-text">Precio</span>
-                        <span className="price-value">1500</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="add-to-cart-wrapper">
-                <Link to='/cart' className="add-to-cart-button">lo quiero</Link>
-            </div>
+        <AddToCartButton />
       </main>
     </div>
   );
